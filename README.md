@@ -1,4 +1,4 @@
-# ionic-capacitor-firebase-starter
+# step for running application
 
 npm install
 
