@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h4>Setup Your Account</h4>
+  <div>
+    <form [formGroup]="signupForm" (ngSubmit)="register()">
+      <div>
+        <ion-item>
+          <ion-label position="floating">Full Name *</ion-label>
+          <ion-input type="text" minlength="3" formControlName="full_name"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('full_name').hasError('required') && (signupForm.get('full_name').touched)">
+            Full Name is mandatory.!
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">User Name *</ion-label>
+          <ion-input type="text" minlength="3" formControlName="user_name"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('user_name').hasError('required') && (signupForm.get('user_name').touched)">
+            User Name is mandatory.!
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email"  minlength="6" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('email').hasError('required') && (signupForm.get('email').touched)">
+            Email is mandatory.!
+          </div>
+          <div class="error-message"
+            *ngIf="signupForm.get('email').hasError('pattern') && (signupForm.get('email').touched)">
+            Enter Valid Email.!
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">Mobile *</ion-label>
+          <ion-input type="number" minlength="6" formControlName="mobile"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('mobile').hasError('required') && (signupForm.get('mobile').touched)">
+            Mobile Number is mandatory.!
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">DOB *</ion-label>
+          <ion-datetime type="date" [max]="[mDate]" formControlName="dob"></ion-datetime>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('dob').hasError('required') && (signupForm.get('dob').touched)">
+            DOB Number is mandatory.!
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">Password *</ion-label>
+          <ion-input type="password" minlength="6" formControlName="password"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('password').hasError('required') && (signupForm.get('password').touched)">
+            Password is mandatory.!
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">Confirm Password *</ion-label>
+          <ion-input type="password" minlength="6" formControlName="confirmpassword"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="signupForm.get('confirmpassword').hasError('compare') && (signupForm.get('confirmpassword').touched)">
+            Confirm Password not matched.!
+          </div>
+        </div>
+      </div>
+
+      <ion-button class="signin-btn" type="submit" expand="block" primary [disabled]="!signupForm.valid">Submit</ion-button>
+
+      <div class="signin-row">
+        <span>Already have an account?
+          <a href="javascript:void(0)" [routerLink]="['/login']">Sign in</a>
+        </span>
+        <br>
+      </div>
+    </form>
+  </div>
+</ion-content>

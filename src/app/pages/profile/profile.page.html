@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!isDataLoggedIn">
+  <div>
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <div>
+        <ion-item>
+          <ion-label>Full Name : </ion-label>
+          <ion-input type="text" minlength="3" placeholder="Full Name" formControlName="full_name"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="profileForm.get('full_name').hasError('required') && (profileForm.get('full_name').touched )">
+            Full Name is Mandatory.
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label>User Name : </ion-label>
+          <ion-input type="text" minlength="3" placeholder="User Name" formControlName="user_name"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="profileForm.get('user_name').hasError('required') && (profileForm.get('user_name').touched )">
+            User Name is Mandatory.
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label>Mobile : </ion-label>
+          <ion-input type="number" minlength="6" placeholder="Mobile" formControlName="mobile"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="profileForm.get('mobile').hasError('required') && (profileForm.get('mobile').touched )">
+            Mobile is Mandatory.
+          </div>
+        </div>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label>DOB : </ion-label>
+          <ion-datetime type="date" [max]="[mDate]" formControlName="dob"></ion-datetime>
+        </ion-item>
+        <div class="validation-errors">
+          <div class="error-message"
+            *ngIf="profileForm.get('dob').hasError('required') && (profileForm.get('dob').touched )">
+            DOB is Mandatory.
+          </div>
+        </div>
+      </div>
+      <ion-button expand="full" type="submit" [disabled]="!profileForm.valid">Submit</ion-button>
+    </form>
+  </div>
+</ion-content>
