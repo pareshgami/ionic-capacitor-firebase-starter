@@ -1,4 +1,4 @@
-# step for running application
+#Step for running application
 
 npm install
 
